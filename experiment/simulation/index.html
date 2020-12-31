@@ -1,13 +1,306 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-		<!-- Your code goes here-->
+<meta charset="UTF-8">
+<title>SOLVE</title>
+<link rel="stylesheet" href="css/soft.css" />
+<script src="js/slide.js"></script>
+<style>
+#sidebar{
+	position:fixed;
+	width:200px;
+	height:480px;
+	background-color:#151719;
+	left:-40px;
+	top:90px;
+	transition:left 500ms linear;
+	font-size:14px;
+	font-family:verdana;
+}
+#sidebar.active{
+	left:-200px;
+}
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="./js/main.js"></script>
-</body>
+#sidebar ul li{
+	color:white;
+	list-style:none;
+	padding:9px 10px;
+	border-bottom:1px solid white;
+	cursor:pointer;
+}
+#sidebar ul li:hover{
+	background-color:lightblue;
+}
+#sidebar .toggle-btn{
+	position:absolute;
+	left:230px;
+	top:20px;
+}
+
+#sidebar .toggle-btn span{
+	display:block;
+	width:30px;
+	height:2px;
+	background:#151719;
+	margin:5px 10px;
+	cursor:pointer;
+}
+
+#content-div{
+	position:absolute;
+	left:350px;
+	top:150px;
+}
+
+
+</style>
+<script>
+var simsubscreennum=0;
+var temp=0;
+var form1Answers = [0,1,2]
+var form2Answers = [0,1,2,3,4,5,6,7];
+var form3Answers = [0,1,2,3];
+var form4Answers = [0,1,2,3,4];
+var form5Answers = [0,1,2,3,4,5];
+var form6Answers = [0,1,2,3,4];
+var form7Answers = [0,1,2,3,4];
+var form8Answers = [0,1,2,3,4];
+var form9Answers = [0,1,2,3,4];
+
+
+
+</script>
+</head>
+
+<body style="margin:0; font-family:verdana;">
+<div id="simscreen">
+<div id="title"><h5>IDENTIFICATION AND STUDY ON PHYSICAL PROPERTIES OF ROCKS </h5></div>
+
+<div class="simsubscreen" id="canvas0" >
+<h4 class="incanvas">Objective:</h4>
+<p class="incanvas" style="font-size:14px;">To determine the properties of rocks.</p><br/>
+<h4 class="incanvas">Requirements:</h4>
+<p class="incanvas" style="font-size:14px;"> Rock Samples </p>
+</div>
+
+<div class="simsubscreen" id="canvas1" style="visibility:hidden;">
+	<strong class="incanvas">STEP</strong>
+	<span class="circlebg">&nbsp;1&nbsp;</span>
+	<p class="steptext">&nbsp;Select a rock sample to identify its properties.</p>
+	<label for="sampleSelect" style="position:absolute;left:200px;top:100px;font-family:verdana;font-size:14px">Select a rock sample: <input id="sampleSelect" type="text"autocomplete="off" disabled=true style="border:1px solid black;color:black;background-color:white"><input type="button" id="selectSample" onclick="setSample();" value="OK" style="cursor:pointer"></label>
+	
+</div>
+
+<div class="simsubscreen" id="canvas2" style="visibility:hidden;">
+	<strong class="incanvas">STEP</strong>
+	<span class="circlebg">&nbsp;2&nbsp;</span>
+	<p class="steptext">&nbsp;Identify the properties of rock.</p>
+	<div id="sidebar">
+		<div class="toggle-btn" onclick="toggleSidebar()">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<ul onmouseover="document.getElementById('identity').style.visibility='hidden';">
+			<li id="menu0" onclick="closeMenu(this,'form0',0,'f0');">Rock</li>
+			<li id="menu1" onclick="closeMenu(this,'form1',1,'f1');">Group</li>
+			<li id="menu2" onclick="closeMenu(this,'form2',2,'f2');">Colour</li>
+			<li id="menu3" onclick="closeMenu(this,'form3',3,'f3');">Grain Size</li>
+			<li id="menu4" onclick="closeMenu(this,'form4',4,'f4');">Texture and Structure</li>
+			<li id="menu5" onclick="closeMenu(this,'form5',5,'f5');">Essential Minerals</li>
+			<li id="menu6" onclick="closeMenu(this,'form6',6,'f6');">Accessory Minerals/Cementing Materials </li>
+			<li id="menu7" onclick="closeMenu(this,'form7',7,'f7');">Specific Gravity</li>
+			<li id="menu8" onclick="closeMenu(this,'form8',8,'f8');">Mode of Origin</li>
+			<li id="menu9" onclick="closeMenu(this,'form9',9,'f9');">Identify Rock</li>
+			<li id="menu10" onclick="closeMenu(this,'form10',10,'f10');">Formative Questions</li>
+			<!-- <li id="menu11" onclick="closeMenu(this,'form11',11,'f11');">Identify Mineral</li> -->
+			<!-- <li id="menu12" onclick="closeMenu(this,'form12',12,'f12');">Formative Questions</li> -->
+		</ul>
+</div>
+
+<form id="form1" autocomplete="off" class="formStyle">
+	<span id="p1" class="tooltip"><b>Identify Group of Rock</b>:</span><br>
+	<input type="radio" value="0" name="habit"><span id="f10"> Igneous Rock </span><br>
+	<input type="radio" value="1" name="habit"><span id="f11"> Sedimentary Rock</span><br>
+	<input type="radio" value="2" name="habit"><span id="f12"> Metamorphic Rock</span><br>
+	<input id="check1" type="button" value="Check My Answer" name="habit" onclick = "checkForm1Answer('form1',1,'f1');">
+	<input id="reset1" type="button" value="Reset Answer" name="colour" onclick = "resetForm('form1',1,'f1');">
+	<input id="correct1" type="button" value="Get Correct Answer" name="colour" style="visibility:hidden" onclick = "getCorrectAnswer('form1',1,'f1');" >
+	&nbsp;&nbsp;<span id="c1">Correct Answers:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="w1">Wrong Answers:</span>
+</form>
+
+<form id="form2" class="formStyle">
+	<span id="p2" class="tooltip"><b>Identify Colour of Rock</b>:</span><br>
+	<input type="checkbox" value="0" name="colour"><span id="f20"> Dark Grey to Black</span><br>
+	<input type="checkbox" value="1" name="colour"><span id="f21"> Pink</span><br>
+	<input type="checkbox" value="2" name="colour"><span id="f22"> Flesh Red</span><br>
+	<input type="checkbox" value="3" name="colour"><span id="f23"> White</span><br>
+	<input type="checkbox" value="4" name="colour"><span id="f24"> Greyish White</span><br>
+	<input type="checkbox" value="5" name="colour"><span id="f25"> Silver Grey</span><br>
+	<input type="checkbox" value="6" name="colour"><span id="f26"> Grey</span><br>
+	<input type="checkbox" value="7" name="colour"><span id="f27"> Brick Red</span><br>
+	<input id="check2" type="button" value="Check My Answer" name="colour" onclick = "checkForm2Answer('form2',2,'f2');">
+	<input id="reset2" type="button" value="Reset Answer" name="colour" onclick = "resetForm('form2',2,'f2');">
+	<input id="correct2" type="button" value="Get Correct Answer" name="colour" style="visibility:hidden" onclick = "getCorrectAnswer('form2',2,'f2');" >
+	&nbsp;&nbsp;<span id="c2">Correct Answers:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="w2">Wrong Answers:</span>
+</form>
+
+<form id="form3" class="formStyle">
+	<span id="p3" class="tooltip"><b>Identify Grain Size of Rock</b>:</span><br>
+	<input type="radio" value="Pearly" name="luster"><span id="f30"> Coarse Grained</span><br>
+	<input type="radio" value="Silky" name="luster"><span id="f31"> Medium Grained</span><br>
+	<input type="radio" value="Resinous" name="luster"><span id="f32"> Fine Grained</span><br>
+	<input type="radio" value="Metallic" name="luster"><span id="f33"> Fine to Medium Grained</span><br>
+	<input id="check3" type="button" value="Check My Answer" name="colour" onclick = "checkForm3Answer('form3',3,'f3');">
+	<input id="reset3" type="button" value="Reset Answer" name="colour" onclick = "resetForm('form3',3,'f3');">
+	<input id="correct3" type="button" value="Get Correct Answer" name="colour" style="visibility:hidden" onclick = "getCorrectAnswer('form3',3,'f3');" >
+	&nbsp;&nbsp;<span id="c3">Correct Answers:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="w3">Wrong Answers:</span>
+</form>
+
+<form id="form4" class="formStyle">
+	<span id="p4" class="tooltip"><b>Identify Texture and Structure of Rock</b>:</span><br>
+	<input type="radio" value="Opaque" name="diaphaneity"><span id="f40">  Equigranular</span><br>
+	<input type="radio" value="Translucent" name="diaphaneity"><span id="f41">  Holocrystalline, Graphic Grained, cuneiform structure</span><br>	
+	<input type="radio" value="Translucent" name="diaphaneity"><span id="f42">  Schistose</span><br>	
+	<input type="radio" value="Translucent" name="diaphaneity"><span id="f43">  Vesicular</span><br>	
+	<input type="radio" value="Translucent" name="diaphaneity"><span id="f44">  Granulose</span><br>	
+	<input id="check4" type="button" value="Check My Answer" name="colour" onclick = "checkForm4Answer('form4',4,'f4');">
+	<input id="reset4" type="button" value="Reset Answer" name="colour" onclick = "resetForm('form4',4,'f4');">
+	<input id="correct4" type="button" value="Get Correct Answer" name="colour" style="visibility:hidden" onclick = "getCorrectAnswer('form4',4,'f4');" >
+	&nbsp;&nbsp;<span id="c4">Correct Answers:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="w4">Wrong Answers:</span>
+</form>
+
+<form id="form5" class="formStyle">
+	<span id="p5" class="tooltip"><b>Identify Essential Minerals of Rock</b>:</span><br>
+	<input type="checkbox" value="Basal cleavage" name="cleavage"><span id="f50">  Plagioclase augite</span><br>
+	<input type="checkbox" value="Perfect" name="cleavage"><span id="f51">  Quartz Orthoclase</span><br>
+	<input type="checkbox" value="Present" name="cleavage"><span id="f52">  Biotite</span><br>
+	<input type="checkbox" value="Perfect cubic cleavage" name="cleavage"><span id="f53">  Mica</span><br>
+	<input type="checkbox" value="Nil" name="cleavage"><span id="f54">  Plagioclase Biotite</span><br>
+	<input type="checkbox" value="Nil" name="cleavage"><span id="f55">  Quartz</span><br>
+	<input id="check5" type="button" value="Check My Answer" name="colour" onclick = "checkForm5Answer('form5',5,'f5');">
+	<input id="reset5" type="button" value="Reset Answer" name="colour" onclick = "resetForm('form5',5,'f5');">
+	<input id="correct5" type="button" value="Get Correct Answer" name="colour" style="visibility:hidden" onclick = "getCorrectAnswer('form5',5,'f5');" >
+	&nbsp;&nbsp;<span id="c5">Correct Answers:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="w5">Wrong Answers:</span>
+</form>
+
+<form id="form6" class="formStyle">
+	<span id="p6" class="tooltip"><b>Identify Accessory Minerals/Cementing Materials of Rock</b>:</span><br>
+	<input type="checkbox" value="Uneven" name="fracture"><span id="f60"> Magnetite</span><br>
+	<input type="checkbox" value="Splintery" name="fracture"><span id="f61"> Iron Pyrites</span><br>
+	<input type="checkbox" value="Splintery" name="fracture"><span id="f62"> Staurolite</span><br>
+	<input type="checkbox" value="Splintery" name="fracture"><span id="f63"> Garnet</span><br>
+	<input type="checkbox" value="Splintery" name="fracture"><span id="f64"> Nil</span><br>
+	<input id="check6" type="button" value="Check My Answer" name="colour" onclick = "checkForm6Answer('form6',6,'f6');">
+	<input id="reset6" type="button" value="Reset Answer" name="colour" onclick = "resetForm('form6',6,'f6');">
+	<input id="correct6" type="button" value="Get Correct Answer" name="colour" style="visibility:hidden" onclick = "getCorrectAnswer('form6',6,'f6');" >
+	&nbsp;&nbsp;<span id="c6">Correct Answers:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="w6">Wrong Answers:</span>
+</form>
+<form id="form7" class="formStyle">
+	<span id="p7" class="tooltip"><b>Identify Specific Gravity of Rock</b>:</span><br>
+	<input type="radio" value="Scratched by finger nail" name="scratchability"><span id="f70"> Medium 2.8 - 2.9</span><br>
+	<input type="radio" value="Can be scratched by knife" name="scratchability"><span id="f71"> Medium 2.6</span><br>
+	<input type="radio" value="Can be scratched by knife" name="scratchability"><span id="f72"> Medium 2.8 - 3.0</span><br>
+	<input type="radio" value="Can be scratched by knife" name="scratchability"><span id="f73"> Low</span><br>
+	<input type="radio" value="Can be scratched by knife" name="scratchability"><span id="f74"> Medium 2.7</span><br>
+	<input id="check7" type="button" value="Check My Answer" name="colour" onclick = "checkForm7Answer('form7',7,'f7');">
+	<input id="reset7" type="button" value="Reset Answer" name="colour" onclick = "resetForm('form7',7,'f7');">
+	<input id="correct7" type="button" value="Get Correct Answer" name="colour" style="visibility:hidden" onclick = "getCorrectAnswer('form7',7,'f7');" >
+	&nbsp;&nbsp;<span id="c7">Correct Answers:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="w7">Wrong Answers:</span>
+</form>	
+<form id="form8" class="formStyle">
+	<span id="p8" class="tooltip"><b>Identify Mode of Origin of Rock</b>:</span><br>
+	<input type="radio" value="2 - 2.5" name="hardness"><span id="f80"> Plutonic Basic Igneous Rock</span><br>
+	<input type="radio" value="2.5 - 4.5" name="hardness"><span id="f81"> Plutonic Acidic Igneous Rock</span><br>	
+	<input type="radio" value="3.2" name="hardness"><span id="f82"> Dynamic Metamorphic Rock</span><br>	
+	<input type="radio" value="5.5" name="hardness"><span id="f83"> Volcanic Acidic Igneous Rock</span><br>
+	<input type="radio" value="5.5" name="hardness"><span id="f84"> Thermal Metamorphic Rock</span><br>
+	<input id="check8" type="button" value="Check My Answer" name="colour" onclick = "checkForm8Answer('form8',8,'f8');">
+	<input id="reset8" type="button" value="Reset Answer" name="colour" onclick = "resetForm('form8',8,'f8');">
+	<input id="correct8" type="button" value="Get Correct Answer" name="colour" style="visibility:hidden" onclick = "getCorrectAnswer('form8',8,'f8');" >
+	&nbsp;&nbsp;<span id="c8">Correct Answers:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="w8">Wrong Answers:</span>	
+</form>
+<form id="form9" class="formStyle">
+	<span id="p9" class="tooltip"><b>Identify the Rock</b>:</span><br>
+	<input type="radio" value="Hydrous silicate of Mg ans Ca" name="chemicalComposition"><span id="f90"> Gabbro</span><br>
+	<input type="radio" value="Hydrous Mg silicate" name="chemicalComposition"><span id="f91"> Graphic Granite</span><br>	
+	<input type="radio" value="Pbs" name="chemicalComposition"><span id="f92"> Mica</span><br>	
+	<input type="radio" value="Fe<sub>2</sub>O<sub>3" name="chemicalComposition"><span id="f93"> Pumice</span><br>
+	<input type="radio" value="Nil" name="chemicalComposition"><span id="f94"> Quartzite</sub></span><br>
+	<input id="check9" type="button" value="Check My Answer" name="colour" onclick = "checkFinalAnswer();">
+	<!-- <input id="reset9" type="button" value="Reset Answer" name="colour" onclick = "resetForm('form9',9,'f9');"> -->
+	<!-- <input id="correct9" type="button" value="Get Correct Answer" name="colour" style="visibility:hidden" onclick = "getCorrectAnswer('form9',9,'f9');" > -->
+	&nbsp;&nbsp;<span id="c9">You have selected any option</span>
+</form>
+<form id="form10" class="formStyle">
+	<p id="fq"><b>Answer the questions below</b>:</p>
+	Distinguishing/Special Characteristics:<select id="s1">
+		<option>Dark Grey Colour, Coarse Grained, Twinned Plagioclase</option>
+		<option>Porphyritic texture, can be cut, carved and polished</option>
+		<option>Named after the accessory minerals</option>
+		<option>Vesicular, Very Light but Tough</option>
+		<option>Brittle, Vitreous</option>
+	</select><br>
+	Engineering Importance & Uses :<select id="s2">
+		<option>Ornamental, Kerbstones, Concrete Aggregate, Ballast</option>
+		<option>Building & Ornamental, Monumental, Kerbstones, Road metal, Concrete Aggregate</option>
+		<option>Worked for extracting staurolite</option>
+		<option>Light weight concrete tooth powder, type rater eraser, scrubber in beauty parlour</option>
+		<option>Road metal, Rail road ballast, Flux, Glass cutting</option>
+	</select><br>
+	<input id="check10" type="button" value="Check My Answer" name="colour" onclick = "checkForm10Answer('form11',12,'f12');"><br>
+	<div id = "dispAns">
+	<p id="d1"></p>
+	<p id="d2"></p>
+	</div>
+</form>
+<p id="identity"></p>
+<p id="message"></p>
+<div id="showAns">
+	<p id="lastPara" style="font-size:20px;">&#128077;Correct Answer</p>
+	<img id="lastImg" src="images/Asbestoes/asb1.JPG" width="300px;">
+ </div>
+</div>
+
+
+	
+</div>
+
+
+<!-- Mineral Division -->
+<div id="mySlider"></div>
+<div id="sliderNav">
+	<div id="sliderPrev" onclick="prevSlide();"><img src="images/backward.png"></div>
+	<div id="sliderNext" onclick="nextSlide();"><img src="images/forward.png"></div>
+</div>
+
+<!-- Mineral Division2 -->
+<div id="form0" style="visibility:hidden">
+<div id="sliderNav1" style="visibility:hidden">
+	<div id="sliderPrev1" onclick="prevSlide1();"><p><img src="images/c.png" height = "27" title="click me to turn anticlockwise"></p></div>
+	<div id="sliderNext1" onclick="nextSlide1();"><p><img src="images/ac.png" height = "27" title="click me to turn clockwise"></p></div>
+</div>
+</div>
+<div id="myresult" class="img-zoom-result" style="visibility:hidden;left:350px"></div>
+
+<!-- nextButton -->
+<div id="nav">
+<img id="nextButton" onclick="navNext()" src="images/Next.png" />
+<img id="prevButton" onclick="navPrev()" src="images/Prev.png" />
+</div>
+
+ 
+ 
+
+
+ <span id="ttt"></span>
+<!--Blinking Arrow	-->	
+<img class ="" id="arrow1" style="visibility:hidden;" src="images/arrow1.png"/>
+
+<div id="copyright"> &copy; 2018 - <script>document.write(new Date().getFullYear())</script> SOLVE - The Virtual Lab @ NITK Surathkal, Department of Water Resources & Ocean Engineering</div><script type="text/javascript" src= "js/geo1.js"></script>
+
+
+</body> 
+<script type="text/javascript" src="js/slide.js"></script>
+
 </html>
