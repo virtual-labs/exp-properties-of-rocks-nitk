@@ -1,1 +1,1 @@
-### Aim of the experiment
+To identify the rock based on its physical properties.
