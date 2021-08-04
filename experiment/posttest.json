@@ -1,44 +1,44 @@
 [{
-	"question": "Rock having grain size in the range 1mm to 5mm is",
-	"answers": {
-		"a": "Coarse grained",
-		"b": "Fine grained",
-		"c": "Medium grained",
-		"d": "None of the above"
-	},
-	"correctAnswer": "c"
-}, {
-	"question": "Cementing material mainly present in",
-	"answers": {
-		"a": "Igneous rocks",
-		"b": "Sedimentary rocks",
-		"c": "Metamorphic rocks",
-		"d": "All the above"
-	},
-	"correctAnswer": "b"
-}, {
-	"question": "A cementing material which provides green colour to sedimentary rocks is",
-	"answers": {
-		"a": "Glaucontic",
-		"b": "Siliceous",
-		"c": "Argillaceous",
-		"d": "Feriginous"
-	},
-	"correctAnswer": "a"
-}, {
-	"question": "Glassy texture comes in",
-	"answers": {
-		"a": "Igneous rocks",
-		"b": "Sedimentary rocks",
-		"c": "Metamorphic rocks",
-		"d": "All the above"
-	},
-	"correctAnswer": "a"
-}, {
-	"question": "The presence of accessory minerals depends on essential mineral in the rock. (Say True or False)",
-	"answers": {
-		"a": "False",
-		"b": "True"
-	},
-	"correctAnswer": "a"
-}]
+		"question": "Rock having grain size in the range 1mm to 5mm is",
+		"answers": {
+			"a": "Coarse grained",
+			"b": "Fine grained",
+			"c": "Medium grained",
+			"d": "None of the above"
+		},
+		"correctAnswer": "c"
+	}, {
+		"question": "Cementing material mainly present in",
+		"answers": {
+			"a": "Igneous rocks",
+			"b": "Sedimentary rocks",
+			"c": "Metamorphic rocks",
+			"d": "All the above"
+		},
+		"correctAnswer": "b"
+	}, {
+		"question": "A cementing material which provides green colour to sedimentary rocks is",
+		"answers": {
+			"a": "Glaucontic",
+			"b": "Siliceous",
+			"c": "Argillaceous",
+			"d": "Feriginous"
+		},
+		"correctAnswer": "a"
+	}, {
+		"question": "Glassy texture comes in",
+		"answers": {
+			"a": "Igneous rocks",
+			"b": "Sedimentary rocks",
+			"c": "Metamorphic rocks",
+			"d": "All the above"
+		},
+		"correctAnswer": "a"
+	}, {
+		"question": "The presence of accessory minerals depends on essential mineral in the rock. (Say True or False)",
+		"answers": {
+			"a": "False",
+			"b": "True"
+		},
+		"correctAnswer": "a"
+	}]
